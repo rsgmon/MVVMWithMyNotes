@@ -5,18 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel>
+    <!--IMPORTANT CONCEPT: As noted below there are two levels of ItemsSource: one here and one in MainWindow. In
+    Windows.Resources in MainWindow we specified what view to use for a given viewmodel type. So we are essentially
+    already within that collection of viewmodels here. By using ItemsSource and specifying ViewModels Collection and
+    having laid out what to do with EmployeeListView with DataTemplate and DataType, we can come here. It
+    takes us down into within each item in the ViewModels collection. So were inside that collection and any code
+    here is applied to properties etc. of that item in the collection. We at the item level of the collection. 
+    This is because we specified for a given type what view to use.-->
+    <StackPanel Background="{Binding BackgroundBrush}">
+        <!-- Here the ItemsSource we bind to the property AllModels within EmployeeListViewModel which is an
+        Observable collection of Model.Employee. ALSO be aware as it can be confusing that we have two levels
+        of ItemsSource: one in MainWindowViewModel and another here. -->    
         <ItemsControl ItemsSource="{Binding AllEmployees}">
             <ItemsControl.ItemTemplate>
+                <!--here we specify a datatemplate inline. this will be applied to each item in the itemscontrol-->
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBox Width="100" Text="{Binding FirstName}"/>
                         <TextBox Width="100" Text="{Binding LastName}"/>
                     </StackPanel>
                 </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            
+            </ItemsControl.ItemTemplate>            
         </ItemsControl>
-            
+        <!--The important point here is the Command property which allows interaction with the viewmodel. By binding with the
+        InvasionCommand property we can call delegates. -->
+        <Button Content="Check for Invasion" Width="120" Command="{Binding InvasionCommand}"/>
     </StackPanel>
 </UserControl>

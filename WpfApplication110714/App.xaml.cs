@@ -19,9 +19,11 @@ namespace WpfApplication110714
         {
             base.OnStartup(e);
 
-            //this is where we will actuall inject the viewmodel. We will create an instance of the viewmodel
+            //this is where we will actually inject the viewmodel. We will create an instance of the viewmodel
             //(which we haven't done yet) and then set the DataContext of our window from there. 
             MainWindow window = new MainWindow();
+            //Notice that we create an instance of MainWindowViewModel
+            //This is where the control of what UI will be shown on the screen starts!
             var viewModel = new MainWindowViewModel();
             window.DataContext = viewModel;
             window.Show();

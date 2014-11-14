@@ -8,7 +8,9 @@ using System.ComponentModel;
 namespace WpfApplication110714.ViewModel
 {
     public abstract class ViewModelBase: INotifyPropertyChanged, IDisposable
-    {
+    {   /*This base class is just here to complete the interfaces we have inherited. 
+         This way we can create more concrete classes that look complicated and focus
+         on what their for.*/
         protected ViewModelBase()
         {
         }
@@ -25,7 +27,7 @@ namespace WpfApplication110714.ViewModel
             }
         }
 
-        /*completes the Idisposable*/
+        /*Completes the IDisposable. Notice the actual OnDispose method is virtual.*/
         public void Dispose()
         {
             this.OnDispose();

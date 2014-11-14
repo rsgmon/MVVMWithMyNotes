@@ -5,14 +5,23 @@
         xmlns:vm="clr-namespace:WpfApplication110714.ViewModel"
         xmlns:vw="clr-namespace:WpfApplication110714.View">
     <Window.Resources>
+        <!--This makes diplaying the data how we want much easier because whenever the type EmployeeListViewModel
+        appears in knows to use EmployeeListView. By specifying the DataType we have defined the type with the 
+        our view. VERY CRITICAL and I don't want to spend a lot of time again. THIS IS WHERE it knows hey you
+        have given me a collection of ViewModels and because you gave me what view to work with for a given view
+        model (in this case EmployeeListViewModel) I know what to display (EmployeeListViewModel.xaml).-->
         <DataTemplate DataType="{x:Type vm:EmployeeListViewModel}">
             <vw:EmployeeListView/>
-        </DataTemplate>
-        
+        </DataTemplate>       
     </Window.Resources>
     <Grid Margin="4">
+        <!-- Remember that our datacontext has been set in our App class (App.xaml.cs)-->
         <Border  Background="GhostWhite" BorderBrush="LightGray" BorderThickness="1" CornerRadius="5">
-            <!-- We chose an itemscontrol to allow us to load multiple views at once into our main window container.-->
+            <!-- We chose an itemscontrol to allow us to load multiple views at once into our main window container.
+            Also (and this I'm not sure of but...) we have binded to the ViewModels Property in our MainViewModel. That
+            property gets a collection of ViewModelBase (or any subclass). When one member of that collection is an 
+            EmployeeListViewModel, then the ItemsSource knows it must use the EmployeeListView to display things in
+            that EmployeeListViewModel. How? Because we have specified that above in the Window.Resouces.-->
             <ItemsControl ItemsSource="{Binding ViewModels}" Margin="4" />
         </Border>
         

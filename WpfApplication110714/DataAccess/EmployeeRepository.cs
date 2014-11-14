@@ -4,8 +4,10 @@ using WpfApplication110714.Model;
 
 namespace WpfApplication110714.DataAccess
 {
+    /*Think of this as our database.  We have data and a single method
+     to return that data to the client.*/
     public class EmployeeRepository
-    {
+    {   
         readonly List<Employee> _employees;
 
         public EmployeeRepository()

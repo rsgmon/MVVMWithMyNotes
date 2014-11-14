@@ -5,7 +5,11 @@
 *.suo
 *.user
 *.sln.docstates
-
+*.sln
+*.config
+*.resx
+*.settings
+*.csproj
 # Build results
 
 [Dd]ebug/
